@@ -24,6 +24,21 @@ export default function Home() {
   const [amount, setAmount] = useState("0.00")
 
 
+  const handleChange = (inputtxt: any) => {
+    var letters = "^[a-zA-Z0-9 ]+$";
+    if(inputtxt.match(letters))
+    {
+     setAddress(inputtxt)
+    }
+  else
+    {
+     
+    }
+  }
+
+  const walletAddress = `${address}, ${amount}`
+
+
   const handleProceed = () => {
     setSteps(steps + 1)
   }
@@ -33,14 +48,14 @@ export default function Home() {
   }
   
   const handleSubmit = () => {
-
+      alert(walletAddress)
   }
 
   const displayStepOne = () => {
     return <>
       <div className='mt'>
         <label style={{ fontWeight: 500 }}>Enter Address</label><br />
-        <input className='sender-input' value={address} onChange={(e) => setAddress(e.target.value)} />
+        <input className='sender-input' value={address} onChange={(e) => handleChange(e.target.value)} />
 
       </div>
       <div className='bal'>
@@ -133,9 +148,9 @@ export default function Home() {
 
       <div style={{marginTop: '1rem'}}>
         {
-          ["", "", "", "",""]?.map(data => {
+          ["", "", "", "",""]?.map((data, i) => {
             return (
-              <div className='list-row'>
+              <div className='list-row' key={i}>
                 <div style={{...FONTS.body2, color: "#70707B"}}>0x3187d7b392f74388F5DD17525BeFF8a6f7Bcb11e</div>
                 <div style={{...FONTS.body2, color: '#6938EF', fontWeight: 500}}>0.0</div>
               </div>
